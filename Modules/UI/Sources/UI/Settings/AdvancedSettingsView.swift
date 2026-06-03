@@ -30,17 +30,17 @@ public struct AdvancedSettingsView: View {
                     if self.backupVM.isBackingUp {
                         HStack(spacing: 6) {
                             ProgressView().controlSize(.small)
-                            Text("Backing up…")
+                            Text(L10n.string("Backing up…"))
                         }
                     } else {
-                        Text("Back Up Now")
+                        Text(L10n.string("Back Up Now"))
                     }
                 }
                 .disabled(!self.backupVM.iCloudAvailable || self.backupVM.isBackingUp)
                 .help("Writes a consistent snapshot using the SQLite backup API.")
 
                 if !self.backupVM.iCloudAvailable {
-                    Text("iCloud Drive is not available on this Mac. Sign in to iCloud in System Settings to enable backups.")
+                    Text(L10n.string("iCloud Drive is not available on this Mac. Sign in to iCloud in System Settings to enable backups."))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -76,10 +76,10 @@ public struct AdvancedSettingsView: View {
                         if self.backupVM.isLocalBackingUp {
                             HStack(spacing: 6) {
                                 ProgressView().controlSize(.small)
-                                Text("Backing up…")
+                                Text(L10n.string("Backing up…"))
                             }
                         } else {
-                            Text("Back Up Now")
+                            Text(L10n.string("Back Up Now"))
                         }
                     }
                     .disabled(self.backupVM.isLocalBackingUp)
@@ -102,10 +102,10 @@ public struct AdvancedSettingsView: View {
 
             Section("Logging") {
                 Picker("Log level", selection: self.$logLevel) {
-                    Text("Debug").tag("debug")
-                    Text("Info").tag("info")
-                    Text("Warning").tag("warning")
-                    Text("Error").tag("error")
+                    Text(L10n.string("Debug")).tag("debug")
+                    Text(L10n.string("Info")).tag("info")
+                    Text(L10n.string("Warning")).tag("warning")
+                    Text(L10n.string("Error")).tag("error")
                 }
             }
 
@@ -134,7 +134,7 @@ public struct AdvancedSettingsView: View {
                     Button("Reset", role: .destructive) { self.resetPreferences() }
                     Button("Cancel", role: .cancel) {}
                 } message: {
-                    Text("This cannot be undone. Bòcan will restart with default settings.")
+                    Text(L10n.string("This cannot be undone. Bòcan will restart with default settings."))
                 }
 
                 Button("Export Diagnostics…") {

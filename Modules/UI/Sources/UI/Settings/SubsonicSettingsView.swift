@@ -175,10 +175,10 @@ private struct SubsonicEmptyState: View {
             Image(systemName: "server.rack")
                 .font(.system(size: 48, weight: .light))
                 .foregroundStyle(.secondary)
-            Text("No Sources Configured")
+            Text(L10n.string("No Sources Configured"))
                 .font(.title3)
-            Text("Add a Subsonic, Navidrome, or other compatible server "
-                + "to stream your remote music library.")
+            Text(L10n.string("Add a Subsonic, Navidrome, or other compatible server "
+                + "to stream your remote music library."))
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -221,9 +221,9 @@ private struct SubsonicServerEditorView: View {
 
             Section("Authentication") {
                 Picker("Method", selection: self.$vm.editor.authKind) {
-                    Text("Token + Password (Subsonic / Navidrome)")
+                    Text(L10n.string("Token + Password (Subsonic / Navidrome)"))
                         .tag(SubsonicAuthKind.tokenSalt)
-                    Text("API Key (OpenSubsonic)")
+                    Text(L10n.string("API Key (OpenSubsonic)"))
                         .tag(SubsonicAuthKind.apiKey)
                 }
                 .pickerStyle(.menu)
@@ -251,15 +251,15 @@ private struct SubsonicServerEditorView: View {
 
             Section("Streaming") {
                 Picker("Maximum Bitrate", selection: self.$vm.editor.bitrateKind) {
-                    Text("Original quality").tag(SubsonicSettingsViewModel.BitrateKind.original)
-                    Text("Cap at…").tag(SubsonicSettingsViewModel.BitrateKind.kbps)
+                    Text(L10n.string("Original quality")).tag(SubsonicSettingsViewModel.BitrateKind.original)
+                    Text(L10n.string("Cap at…")).tag(SubsonicSettingsViewModel.BitrateKind.kbps)
                 }
                 .pickerStyle(.segmented)
 
                 if self.vm.editor.bitrateKind == .kbps {
                     Picker("Bitrate", selection: self.$vm.editor.bitrateKbps) {
                         ForEach([96, 128, 192, 256, 320], id: \.self) { kbps in
-                            Text("\(kbps) kbps").tag(kbps)
+                            Text(L10n.string("\(kbps) kbps")).tag(kbps)
                         }
                     }
                     .pickerStyle(.menu)
@@ -359,7 +359,7 @@ private struct TestResultBlock: View {
                 Label(self.headline(for: caps), systemImage: "checkmark.seal.fill")
                     .foregroundStyle(.green)
                 if !self.extensions(from: caps).isEmpty {
-                    Text("Advertised extensions: " + self.extensions(from: caps).joined(separator: ", "))
+                    Text(L10n.string("Advertised extensions: \(self.extensions(from: caps).joined(separator: ", "))"))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

@@ -37,7 +37,7 @@ public struct ReplayGainSettingsView: View {
             }
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("This will re-analyse every track in the library. It may take several minutes.")
+            Text(L10n.string("This will re-analyse every track in the library. It may take several minutes."))
         }
     }
 
@@ -46,10 +46,10 @@ public struct ReplayGainSettingsView: View {
     private var modeSection: some View {
         Section("Playback Mode") {
             Picker("ReplayGain", selection: self.$vm.state.replayGainMode) {
-                Text("Off").tag(ReplayGainMode.off)
-                Text("Track Gain").tag(ReplayGainMode.track)
-                Text("Album Gain").tag(ReplayGainMode.album)
-                Text("Auto").tag(ReplayGainMode.auto)
+                Text(L10n.string("Off")).tag(ReplayGainMode.off)
+                Text(L10n.string("Track Gain")).tag(ReplayGainMode.track)
+                Text(L10n.string("Album Gain")).tag(ReplayGainMode.album)
+                Text(L10n.string("Auto")).tag(ReplayGainMode.auto)
             }
             .pickerStyle(.segmented)
             .accessibilityLabel("ReplayGain mode")
@@ -72,7 +72,7 @@ public struct ReplayGainSettingsView: View {
                         .frame(width: 52, alignment: .trailing)
                 }
             }
-            Text("Applied on top of the resolved ReplayGain value. A clipping guard prevents the output peak from exceeding −0.5 dBFS.")
+            Text(L10n.string("Applied on top of the resolved ReplayGain value. A clipping guard prevents the output peak from exceeding −0.5 dBFS."))
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -91,7 +91,7 @@ public struct ReplayGainSettingsView: View {
     private var analysisButtons: some View {
         Group {
             HStack {
-                Text("Compute missing ReplayGain values")
+                Text(L10n.string("Compute missing ReplayGain values"))
                 Spacer()
                 Button("Compute Missing") {
                     Task { await self.library.computeMissingReplayGain() }
@@ -126,12 +126,12 @@ public struct ReplayGainSettingsView: View {
                         value: Double(progress.done),
                         total: Double(progress.total)
                     )
-                    Text("\(progress.done) / \(progress.total)")
+                    Text(L10n.string("\(progress.done) / \(progress.total)"))
                         .font(.caption.monospacedDigit())
                         .foregroundStyle(.secondary)
                         .frame(width: 60, alignment: .trailing)
                 }
-                Text("Analysing\u{2026}")
+                Text(L10n.string("Analysing\u{2026}"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
